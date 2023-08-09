@@ -1,56 +1,68 @@
-<template>
-  <cds-table
-    hoverable
-    selectable
-    autoWidth
-    borderless
-    hideHeader
-    rowSize="short"
-    name="table"
-    :columns="columns"
-    :data="rows"
-  >
-    <template #footer>
-      <cds-table-footer>
-        <template #pagination>
-          <cds-pagination :perPage="10" :count="1000" />
-        </template>
-        <template #summary> Отображено 5 из 24 </template>
-        <template #view>
-          <span>На странице</span>
-          <cds-select
-            label=""
-            value="5"
-            :options="[
-              { value: 5, text: '5' },
-              { value: 10, text: '10' }
-            ]"
-          />
-        </template>
-      </cds-table-footer>
-    </template>
-  </cds-table>
-</template>
-
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useIssuesStore } from '../entities/issues/model/store'
+import type { NTable, ITableProps } from '@central-design-system/components'
+
+type TDataType = {
+  key: number
+  id: number
+  title: string
+  state: string
+  comments: number
+  labels: Array<{ name: string; color: string }>
+}
 
 const issuesStore = useIssuesStore()
-
-const rows = computed(() => issuesStore.getIssues)
-const columns = [
+const isLoading = ref(false)
+const columns: NTable.NColumn.TColumns<TDataType> = [
   {
-    title: 'Issue',
-    key: 'title',
-    width: 130,
-    dataIndex: 'title'
+    title: 'Open issue',
+    dataIndex: 'title',
+    sorter: (a: TDataType, b: TDataType) => a.title.length - b.title.length,
+    sortDirections: ['descend']
+  },
+  {
+    title: 'Labels',
+    dataIndex: 'labels',
+    defaultSortOrder: 'descend',
+    sorter: (a: TDataType, b: TDataType) => a.labels.length - b.labels.length
+  },
+  {
+    title: 'Comments',
+    dataIndex: 'comments',
+    sorter: (a: TDataType, b: TDataType) => a.comments - b.comments,
+    sortDirections: ['descend', 'ascend']
   }
 ]
 
+const rows = computed(() => issuesStore.getIssues)
+
 const getData = async () => {
-  await issuesStore.fetchIssues()
+  try {
+    isLoading.value = true
+    await issuesStore.fetchIssues()
+  } catch (error) {
+    console.log(error)
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const onChange: ITableProps<TDataType>['onChange'] = (pagination, filters, sorter) => {
+  console.log('onChange', pagination, filters, sorter)
 }
 
 onMounted(() => getData())
 </script>
+
+<template>
+  <cds-table :columns="columns" :data="rows" @change="onChange">
+    <template #bodyCell="props">
+      <template v-if="props.column.dataIndex === 'labels'">
+        <span v-for="label in props.record.labels" :key="label.name">
+          <cds-tag :text="label.name" :color="label.color" />
+        </span>
+      </template>
+    </template>
+  </cds-table>
+</template>

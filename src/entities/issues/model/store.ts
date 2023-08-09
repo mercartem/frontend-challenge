@@ -10,6 +10,7 @@ export const useIssuesStore = defineStore({
       title: string
       state: string
       comments: number
+      labels: Array<{ name: string; color: string }>
     }>,
     currentIssue: {}
   }),
@@ -32,7 +33,11 @@ export const useIssuesStore = defineStore({
           id: issue.id,
           title: issue.title,
           state: issue.state,
-          comments: issue.comments
+          comments: issue.comments,
+          labels: issue.labels.map((label) => ({
+            color: typeof label === 'object' && label.color ? label.color : '',
+            name: typeof label === 'object' && label.name ? label.name : ''
+          }))
         }))
       } catch (error) {
         console.error(error)
