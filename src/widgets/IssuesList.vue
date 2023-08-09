@@ -25,13 +25,15 @@ const columns: NTable.NColumn.TColumns<TDataType> = [
     title: 'Labels',
     dataIndex: 'labels',
     defaultSortOrder: 'descend',
-    sorter: (a: TDataType, b: TDataType) => a.labels.length - b.labels.length
+    sorter: (a: TDataType, b: TDataType) => a.labels.length - b.labels.length,
+    align: 'center'
   },
   {
     title: 'Comments',
     dataIndex: 'comments',
     sorter: (a: TDataType, b: TDataType) => a.comments - b.comments,
-    sortDirections: ['descend', 'ascend']
+    sortDirections: ['descend', 'ascend'],
+    align: 'right'
   }
 ]
 
@@ -56,12 +58,22 @@ onMounted(() => getData())
 </script>
 
 <template>
-  <cds-table :columns="columns" :data="rows" @change="onChange">
+  <cds-table :columns="columns" :data="rows" @change="onChange" hovered tableLayout="auto">
     <template #bodyCell="props">
       <template v-if="props.column.dataIndex === 'labels'">
         <span v-for="label in props.record.labels" :key="label.name">
           <cds-tag :text="label.name" :color="label.color" />
         </span>
+      </template>
+      <template v-else-if="props.column.dataIndex === 'comments'">
+        <cds-button size="xs" style="background-color: gray; border-color: gray">
+          <template #prepend>
+            <cds-icon name="comment" />
+          </template>
+          <template #append>
+            <cds-badge :count="props.record.comments" />
+          </template>
+        </cds-button>
       </template>
     </template>
   </cds-table>

@@ -16,7 +16,7 @@ import IssuesList from '../widgets/IssuesList.vue'
 
 <style scoped>
 main {
-  margin-top: 60px;
+  margin-top: 40px;
   padding: 20px;
 }
 </style>
