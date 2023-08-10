@@ -5,7 +5,7 @@ import IssuesList from '../widgets/IssuesList.vue'
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <main-header />
     <main>
       <issues-list />
@@ -15,8 +15,22 @@ import IssuesList from '../widgets/IssuesList.vue'
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
-  margin-top: 40px;
-  padding: 20px;
+  flex: 1;
+  margin: 20px;
+}
+
+@media (max-width: 320px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

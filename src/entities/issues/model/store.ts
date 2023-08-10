@@ -1,17 +1,11 @@
 import { octokit } from '@/shared/api/octocit'
 import { defineStore } from 'pinia'
+import { type TDataType } from '@/widgets/IssuesList.vue'
 
 export const useIssuesStore = defineStore({
   id: 'issues',
   state: () => ({
-    issues: [] as Array<{
-      key: number
-      id: number
-      title: string
-      state: string
-      comments: number
-      labels: Array<{ name: string; color: string }>
-    }>,
+    issues: [] as Array<TDataType>,
     currentIssue: {}
   }),
   getters: {
@@ -42,6 +36,15 @@ export const useIssuesStore = defineStore({
       } catch (error) {
         console.error(error)
       }
+    },
+    setCurrentIssue(issue: TDataType) {
+      this.currentIssue = issue
+    },
+    deleteCurrentIssue() {
+      this.currentIssue = {}
+    },
+    deleteIssues() {
+      this.issues = []
     }
   }
 })

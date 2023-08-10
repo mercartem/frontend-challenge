@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useIssuesStore } from '../entities/issues/model/store'
 import type { NTable, ITableProps } from '@central-design-system/components'
 
-type TDataType = {
+export type TDataType = {
   key: number
   id: number
   title: string
