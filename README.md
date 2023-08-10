@@ -1,25 +1,22 @@
-# challenge
+## Deploy
 
-This template should help get you started developing with Vue 3 in Vite.
+https://frontend-challenge-issues.netlify.app/
 
-## Recommended IDE Setup
+## Technology Stack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+The project is built using the following technologies:
 
-## Type Support for `.vue` Imports in TS
+-   **Central Design System**: CDS is a full-fledged framework built on top of Vue.js. is a full-fledged framework built on top of Vue.js.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+-   **Vue 3**: Vue.js is a progressive JavaScript framework that enables us to build user interfaces efficiently. The latest version, Vue 3, brings additional features, improved performance, and enhanced scalability to the application.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+-   **Pinia**: Pinia is a state management library designed specifically for Vue.js. It helps us manage the application's state in a more organized and scalable manner.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+-   **TypeScript**: TypeScript is a typed superset of JavaScript, adding static typing to the language. Using TypeScript enhances the development process by catching type-related errors early and improving code maintainability.
 
-## Customize configuration
+-   **Vitest**: Vitest is a popular JavaScript testing framework that allows us to write and execute unit tests to ensure the stability and correctness of our codebase.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+-   **Feature-Sliced Design**: FSD is an architectural methodology for scaffolding front-end applications.
 
 ## Project Setup
 
