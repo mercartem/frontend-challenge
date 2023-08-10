@@ -6,7 +6,7 @@ https://frontend-challenge-issues.netlify.app/
 
 The project is built using the following technologies:
 
--   **Central Design System**: CDS is a full-fledged framework built on top of Vue.js. is a full-fledged framework built on top of Vue.js.
+-   **Central Design System**: CDS is a full-fledged framework built on top of Vue.js.
 
 -   **Vue 3**: Vue.js is a progressive JavaScript framework that enables us to build user interfaces efficiently. The latest version, Vue 3, brings additional features, improved performance, and enhanced scalability to the application.
 
