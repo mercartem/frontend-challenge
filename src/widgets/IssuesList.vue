@@ -78,3 +78,11 @@ onMounted(() => getData())
     </template>
   </cds-table>
 </template>
+
+<style>
+@media (max-width: 500px) {
+  .cds-table__cell {
+    max-width: 50px;
+  }
+}
+</style>
